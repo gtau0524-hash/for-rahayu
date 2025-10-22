@@ -1,0 +1,286 @@
+/* =========================
+   Romantic Rose Theme CSS
+   ========================= */
+
+/* Optional: cantik kalau internet aktif */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap');
+
+:root{
+  --rose-50:#fff1f5;
+  --rose-100:#ffe4ec;
+  --rose-200:#ffc9dd;
+  --rose-300:#ff9cc0;
+  --rose-400:#ff6fa3;
+  --rose-500:#ff4d8d;
+  --rose-600:#e23a7b;
+  --rose-700:#bf2f67;
+  --wine:#6b1840;
+  --ink:#1a0f16;
+  --glass-bg: rgba(255, 255, 255, 0.14);
+  --glass-stroke: rgba(255, 255, 255, 0.35);
+  --shadow: 0 20px 40px rgba(107, 24, 64, .25);
+}
+
+/* ====== Reset lembut ====== */
+html, body{
+  height:100% !important;
+}
+*{ box-sizing:border-box; }
+
+/* ====== Latar romantis + hearts ====== */
+html body{
+  margin:0 !important;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif !important;
+  color:#fff !important;
+  /* gradient animatif agar menyatu dgn Background.jpg milikmu */
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(255,77,141,.20), transparent 60%),
+    radial-gradient(800px 500px at -10% 110%, rgba(255,156,192,.18), transparent 60%),
+    linear-gradient(135deg, #1a0f16 0%, #3a1530 50%, #6b1840 100%) !important;
+  background-attachment: fixed;
+  overflow-x:hidden;
+}
+
+/* soft vignette */
+html body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  box-shadow: inset 0 0 200px rgba(0,0,0,.45);
+  z-index:0;
+}
+
+/* floating hearts (tanpa ubah HTML) */
+html body::after{
+  content:"❤ ❤ ❤ ❤ ❤ ❤";
+  position:fixed;
+  left:50%;
+  bottom:-10vh;
+  transform:translateX(-50%);
+  font-family:'Great Vibes', cursive;
+  font-size:42px;
+  letter-spacing:30px;
+  opacity:.25;
+  filter:blur(.2px);
+  animation: floatHearts 14s linear infinite;
+  z-index:0;
+}
+@keyframes floatHearts{
+  0%{ transform:translate(-50%, 0) scale(1); opacity:.22; }
+  60%{ opacity:.28; }
+  100%{ transform:translate(-50%, -120vh) scale(1.25); opacity:0; }
+}
+
+/* ====== Container bergaya glass ====== */
+/* untuk kedua halaman (index & index2) */
+html body .container{
+  position:relative;
+  z-index:1;
+  width:min(92vw, 860px) !important;
+  padding:28px !important;
+  border-radius:24px !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(14px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(120%) !important;
+  border:1px solid var(--glass-stroke) !important;
+  box-shadow: var(--shadow) !important;
+  text-align:center;
+}
+
+/* judul romantis opsional (kalau kamu tambahkan di HTML) */
+.romantic-title{
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(28px, 6vw, 52px);
+  color:var(--rose-100);
+  text-shadow:0 6px 28px rgba(255, 109, 166, .35);
+  margin:0 0 12px;
+}
+
+/* ====== Gambar utama (index.html.html) ====== */
+.photo{
+  width:100% !important;
+  max-width:640px !important;
+  height:auto !important;
+  border-radius:18px !important;
+  border:1px solid rgba(255,255,255,.45);
+  box-shadow: 0 14px 40px rgba(255, 109, 166, .25);
+  transform:translateZ(0);
+  transition: transform .5s cubic-bezier(.2,.6,.2,1),
+              box-shadow .5s ease;
+}
+.photo:hover{
+  transform: scale(1.03) rotate(-.25deg);
+  box-shadow: 0 18px 60px rgba(255, 109, 166, .35);
+}
+
+/* ====== Tombol utama (link “Selanjutnya” & tombol BALAS) ====== */
+.next-button,
+.button,
+a.button{
+  --btnGlow: rgba(255, 109, 166, .55);
+  display:inline-block;
+  appearance:none;
+  border:none;
+  cursor:pointer;
+  padding:14px 28px !important;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.3px;
+  border-radius:999px !important;
+  color:#fff !important;
+  background:
+    linear-gradient(135deg, var(--rose-500), var(--rose-300)) !important;
+  box-shadow:
+    0 8px 24px var(--btnGlow),
+    inset 0 0 0 1px rgba(255,255,255,.35);
+  text-decoration:none !important;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  position:relative;
+}
+.next-button:hover,
+.button:hover,
+a.button:hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 14px 36px rgba(255, 109, 166, .65),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+}
+.next-button:active,
+.button:active,
+a.button:active{
+  transform: translateY(0) scale(.98);
+}
+
+/* heartbeat kecil di hover */
+.next-button:hover::after,
+.button:hover::after,
+a.button:hover::after{
+  content:"❤";
+  position:absolute;
+  right:-14px;
+  top:-10px;
+  font-size:18px;
+  animation: heartbeat .9s ease-in-out infinite;
+}
+@keyframes heartbeat{
+  0%, 100%{ transform: scale(1); opacity:.6; }
+  25%{ transform: scale(1.18); opacity:1; }
+  50%{ transform: scale(1); opacity:.7; }
+  75%{ transform: scale(1.18); opacity:1; }
+}
+
+/* ====== Audio player ====== */
+audio{
+  width:100% !important;
+  margin:14px 0 22px !important;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.25));
+  accent-color: var(--rose-500);
+}
+
+/* ====== Grid halaman kedua (index2.html.html) ====== */
+@media (min-width: 720px){
+  html body .container{
+    display:grid !important;
+    grid-template-areas:
+      "top-left  top-right"
+      "button    button"
+      "bottom-left bottom-right"
+      ".         bottom-text";
+    grid-template-columns: 1fr 1fr !important;
+    gap:22px !important;
+    text-align:left !important;
+  }
+}
+
+@media (max-width: 719.98px){
+  html body .container{
+    display:grid !important;
+    grid-template-areas:
+      "top-left"
+      "top-right"
+      "button"
+      "bottom-left"
+      "bottom-right"
+      "bottom-text";
+    gap:16px !important;
+  }
+}
+
+/* Kartu foto “polaroid” */
+.box{
+  grid-area:auto;
+  background: rgba(255,255,255,.06) !important;
+  border:1px solid rgba(255,255,255,.35) !important;
+  border-radius:18px !important;
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  transform: translateZ(0);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.box:hover{
+  transform: translateY(-4px) rotate(-.4deg);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+.box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter: saturate(108%) contrast(104%);
+}
+
+/* Teks romantis dengan quote line */
+.text{
+  color:#fff !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)) !important;
+  padding:18px 18px 18px 22px !important;
+  border-radius:16px !important;
+  border:1px solid rgba(255,255,255,.28) !important;
+  line-height:1.7 !important;
+  position:relative;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+}
+.text::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:4px;
+  border-radius:16px 0 0 16px;
+  background: linear-gradient(180deg, var(--rose-400), var(--rose-600));
+}
+.text em, .text strong{
+  color: #ffe7f1;
+}
+
+/* Area spesifik dari layout aslinya */
+.box-top-left{ grid-area: top-left !important; }
+.box-bottom-right{ grid-area: bottom-right !important; }
+.text-top-right{ grid-area: top-right !important; }
+.text-bottom-left{ grid-area: bottom-left !important; }
+.text-bottom{
+  grid-area: bottom-text !important;
+  text-align:center;
+  font-style: italic;
+  opacity:.95;
+}
+
+/* ====== Micro-details ====== */
+a{ color:#ffe7f1; }
+a:hover{ color:#ffffff; text-decoration:none; }
+
+/* spacing bawaan untuk kombinasi foto-teks */
+.text + .box,
+.box + .text{ margin-top:2px; }
+
+/* ====== Responsiveness tweaks ====== */
+@media (max-width:520px){
+  .photo{ border-radius:14px; }
+  .next-button, .button, a.button{ width:100%; text-align:center; }
+  .text{ font-size:15px; }
+}
+
+/* ====== Prefers-reduced-motion ====== */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
